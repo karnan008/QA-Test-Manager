@@ -14,6 +14,9 @@ import Sidebar from "@/components/layout/Sidebar";
 import Dashboard from "@/pages/Dashboard";
 import TestCaseList from "@/components/testcases/TestCaseList";
 import ExcelImport from "@/components/import/ExcelImport";
+import ModuleManagement from "@/pages/ModuleManagement";
+import Reports from "@/pages/Reports";
+import TeamManagement from "@/pages/TeamManagement";
 import { useState } from "react";
 
 const queryClient = new QueryClient();
@@ -49,9 +52,9 @@ const AuthWrapper = () => {
               <Route path="/" element={<Dashboard />} />
               <Route path="/test-cases" element={<TestCaseList />} />
               <Route path="/import" element={<ExcelImport />} />
-              <Route path="/modules" element={<div className="text-center py-12"><h2 className="text-xl font-bold">Module Management</h2><p className="text-muted-foreground">Coming soon...</p></div>} />
-              <Route path="/reports" element={<div className="text-center py-12"><h2 className="text-xl font-bold">Reports & Analytics</h2><p className="text-muted-foreground">Coming soon...</p></div>} />
-              <Route path="/team" element={<div className="text-center py-12"><h2 className="text-xl font-bold">Team Management</h2><p className="text-muted-foreground">Coming soon...</p></div>} />
+              <Route path="/modules" element={<ModuleManagement />} />
+              <Route path="/reports" element={<Reports />} />
+              <Route path="/team" element={<TeamManagement />} />
             </Routes>
           </main>
         </div>
