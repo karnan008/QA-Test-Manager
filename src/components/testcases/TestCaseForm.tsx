@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useTestCases, TestCase } from '@/contexts/TestCaseContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -26,8 +25,8 @@ const TestCaseForm: React.FC<TestCaseFormProps> = ({ testCase, onClose }) => {
     precondition: '',
     steps: '',
     expectedResult: '',
-    priority: 'Medium' as const,
-    status: 'Draft' as const,
+    priority: 'Medium' as 'Low' | 'Medium' | 'High' | 'Critical',
+    status: 'Draft' as 'Draft' | 'Final' | 'Passed' | 'Failed',
     tags: [] as string[],
     screenshots: [] as string[]
   });
