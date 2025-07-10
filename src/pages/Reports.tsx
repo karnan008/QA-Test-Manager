@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { useTestCases } from '@/contexts/TestCaseContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -12,6 +11,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import { Download, FileText, BarChart3, PieChart as PieChartIcon, Users, Calendar } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import * as XLSX from 'xlsx';
+import PDFExport from '@/components/reports/PDFExport';
 
 const Reports: React.FC = () => {
   const { testCases, modules } = useTestCases();
@@ -249,6 +249,7 @@ const Reports: React.FC = () => {
         <TabsList>
           <TabsTrigger value="charts">Charts</TabsTrigger>
           <TabsTrigger value="detailed">Detailed View</TabsTrigger>
+          <TabsTrigger value="pdf-export">PDF Export</TabsTrigger>
         </TabsList>
         
         <TabsContent value="charts" className="space-y-6">
@@ -384,6 +385,15 @@ const Reports: React.FC = () => {
               </Table>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="pdf-export">
+          <PDFExport 
+            summaryStats={summaryStats}
+            chartData={chartData}
+            selectedModule={selectedModule}
+            selectedUser={selectedUser}
+          />
         </TabsContent>
       </Tabs>
     </div>

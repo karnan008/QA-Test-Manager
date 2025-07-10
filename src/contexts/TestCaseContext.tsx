@@ -154,6 +154,8 @@ export const TestCaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     let duplicates = 0;
 
     const existingIds = new Set(testCases.map(tc => tc.testCaseId));
+    const existingModuleNames = new Set(modules.map(m => m.name));
+    const newModules: Module[] = [];
 
     cases.forEach(caseData => {
       if (!caseData.testCaseId || !caseData.title || !caseData.module) {
@@ -164,6 +166,18 @@ export const TestCaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       if (existingIds.has(caseData.testCaseId)) {
         duplicates++;
         return;
+      }
+
+      // Auto-create module if it doesn't exist
+      if (!existingModuleNames.has(caseData.module)) {
+        const newModule: Module = {
+          id: Date.now().toString() + Math.random(),
+          name: caseData.module,
+          description: `Auto-created from Excel import`,
+          createdAt: new Date()
+        };
+        newModules.push(newModule);
+        existingModuleNames.add(caseData.module);
       }
 
       const newTestCase: TestCase = {
@@ -186,6 +200,11 @@ export const TestCaseProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       setTestCases(prev => [...prev, newTestCase]);
       added++;
     });
+
+    // Add new modules if any were created
+    if (newModules.length > 0) {
+      setModules(prev => [...prev, ...newModules]);
+    }
 
     return { added, skipped, duplicates };
   };
