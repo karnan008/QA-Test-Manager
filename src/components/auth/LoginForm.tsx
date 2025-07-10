@@ -101,14 +101,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
             </Button>
           </form>
 
-          <div className="mt-6 space-y-4">
-            <div className="text-sm text-center text-muted-foreground">
-              Demo Accounts:
-            </div>
-            <div className="text-xs space-y-1 bg-muted p-3 rounded">
-              <div><strong>Admin:</strong> admin@qa.com / admin123</div>
-              <div><strong>Member:</strong> tester@qa.com / test123</div>
-            </div>
+          <div className="mt-6">
             <div className="text-center">
               <Button variant="link" onClick={onToggleMode}>
                 Need an account? Register here
