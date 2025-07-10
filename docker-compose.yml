@@ -1,0 +1,20 @@
+
+version: '3.8'
+
+services:
+  qa-flow-pilot:
+    build: .
+    container_name: qa-flow-pilot-app
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+      interval: 30s
